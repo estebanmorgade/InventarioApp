@@ -6,8 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
-    <AssemblyName>inventario</AssemblyName>
-    <RootNamespace>inventario</RootNamespace>
+    <AssemblyName>InventarioApp</AssemblyName>
+    <RootNamespace>InventarioApp</RootNamespace>
     <Version>1.0.0</Version>
     <Description>Sistema de gestión de inventario</Description>
   </PropertyGroup>
