@@ -4,6 +4,8 @@ using System.Reflection;
 var assembly = Assembly.GetExecutingAssembly();
 var version = assembly.GetName().Version;
 
+MostrarBanner();
+
 if(args.Length > 0)
 {
     switch (args[0].ToLower())
@@ -26,16 +28,47 @@ if(args.Length > 0)
     }
 }
 
-MostrarBanner();
+int cantidadProductos = 0;
+//decimal valorTotalInventario = 0.00m;
+bool sistemaActivo = true;
+//string nombreSistema = "Sistema de Gestión de Inventario";
 
+Console.WriteLine("Estado del sistema");
+//Console.WriteLine($"Nombre: {nombreSistema}");
+Console.WriteLine($"Productos registrados: {cantidadProductos}");
+//Console.WriteLine($"Valor total del inventario: {valorTotalInventario:N2}");
+Console.WriteLine($"Sistema activo: {(sistemaActivo ? "Sí" : "No")}");
 
-Console.Write("Ingrese un comando (o 'salir' para terminar):");
-string? entrada = Console.ReadLine(); //stdin
+Console.WriteLine("Comandos: listar, agregar, buscar, salir");
+Console.WriteLine();
 
-if (string.IsNullOrWhiteSpace(entrada) || entrada.ToLower() == "salir")
+while (sistemaActivo)
 {
-    Console.WriteLine("Saliendo del programa...");//stdout
-    Environment.Exit(0);
+    Console.Write("Inventario: ");
+    string? entrada = Console.ReadLine();
+
+    //Aplicamos el manejo seguro
+    string comando = string.IsNullOrEmpty(entrada) ? "salir" : entrada.Trim().ToLower();
+    switch (comando)
+    {
+        case "salir":
+            Console.WriteLine("Saliendo del programa...");
+            sistemaActivo = false;
+            break;
+
+        case "listar":
+            Console.WriteLine($"Productos de inventario: {cantidadProductos}");
+            break;
+
+        case "":
+            break;
+
+        
+        default:
+            Console.WriteLine($"Comando '{comando}' desconocido");
+            Console.WriteLine("Comandos disponibles: listar, agregar, buscar, salir");
+            break;
+    }
 }
 
 //FUNCIONES
