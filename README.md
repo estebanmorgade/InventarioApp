@@ -6,7 +6,10 @@ Proyecto del curso **Fundamentos de .NET**
 - .Net 9 SDK
 
 ## Como ejecutar
-dotnet run
+dotnet run o dotnet run -- (argumentos)
+
+-> argumentos disponibles: --help(-h), --version(-v)
+
 
 ## Estructura del proyecto
 
@@ -21,3 +24,4 @@ Esteban Morgade
 
 ## Progreso del curso
 - [x] Modulo 1: El ecosistema .NET
+- [x] Modulo 2: Entradas, salidas y tipos
