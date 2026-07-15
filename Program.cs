@@ -1,120 +1,43 @@
-﻿
-using System.Reflection;
-using InventarioApp.Models;
+﻿using InventarioApp.Models;
+using InventarioApp.Repositories;
+using InventarioApp.Factories;
 
-var assembly = Assembly.GetExecutingAssembly();
-var version = assembly.GetName().Version;
+Console.WriteLine("**** Bienvenido al sistema de inventario ****");
 
-/*if(args.Length > 0)
+var repository = new InMemoryProductoRepository();
+
+var laptop = ProductoFactory.Crear("Laptop", 1500.00m, 10, CategoriaProducto.Electronica);
+var mouse = ProductoFactory.Crear("Mouse", 25.00m, 50, CategoriaProducto.Electronica);
+var teclado = ProductoFactory.Crear("Teclado", 45.00m, 30, CategoriaProducto.Electronica);
+var silla = ProductoFactory.Crear("Silla de oficina", 120.00m, 20, CategoriaProducto.Muebles);
+var escritorio = ProductoFactory.Crear("Escritorio", 250.00m, 15, CategoriaProducto.Muebles);
+
+repository.Agregar(laptop);
+repository.Agregar(mouse);
+repository.Agregar(teclado);
+repository.Agregar(silla);
+repository.Agregar(escritorio);
+
+Console.WriteLine($"Productos agregados al inventario: {repository.Cantidad}\n");
+
+// Consultas basicas LINQ
+
+var electronicos = repository.BuscarPorCategoria(CategoriaProducto.Electronica);
+Console.WriteLine("Productos de electrónica:");
+foreach (var producto in electronicos)
 {
-    switch (args[0].ToLower())
-    {
-        case "--help":
-        case "-h":
-            MostrarAyuda();
-            Environment.Exit(0);
-            break;
-        case "--version":
-        case "-v":
-            Console.WriteLine($"Versión: {version}");
-            Environment.Exit(0);
-            break;
-        default:
-            Console.WriteLine($"Comando desconocido: {args[0]}");
-            MostrarAyuda();
-            Environment.Exit(2);
-            break;
-    }
-}
-*/
-
-//variables
-int cantidadProductos = 0;
-decimal valorTotalInventario = 0.00m;
-
-MostrarBanner();
-
-bool continuar = true;
-
-while (continuar)
-{
-    MostrarMenu();
-    string comando = LeerEntrada();
-    continuar = ProcesarComando(comando);
+    Console.WriteLine($"- {producto.Nombre} : {producto.Precio:C}");
 }
 
-// ============ METODOS ============
+var conMouse = repository.BuscarPorNombre("mouse");
 
-bool ProcesarComando(string comando)
+foreach (var producto in conMouse)
 {
-    switch (comando)
-    {
-        case "listar":
-            ListarProductos();
-            return true;
-        case "agregar":
-            AgregarProducto();
-            return true;
-        case "buscar":
-            BuscarProducto();
-            return true;
-        case "salir":
-            Console.WriteLine("Saliendo del programa...");
-            return false;
-        default:
-            Console.WriteLine($"Comando '{comando}' no valido");
-            return true;
-    }
+    Console.WriteLine($"{producto.Nombre}");
 }
 
-void ListarProductos()
-{
-    Console.WriteLine($"Total: {cantidadProductos} productos en el inventario");
-    Console.WriteLine($"Valor total del inventario: {valorTotalInventario:C}");
-}
+var nombres = repository.ObtenerNombres();
+Console.WriteLine($"\nTodos los nombres de productos en el inventario: {string.Join(", ", nombres)}"); //se podria hacer con Foreach pero es mas facil con string.Join ya que solo queremos unir las cadenas en una sola separada por comas.
 
-void AgregarProducto()
-{
-    Console.WriteLine("Agregar producto (Modulo3)");
-}
-
-void BuscarProducto()
-{
-    Console.WriteLine("Buscar producto (Modulo4)");
-}
-
-string LeerEntrada()
-{
-    string salida = Console.ReadLine();
-    return salida.Trim();
-}
-// ============ FUNCIONES ============
-
-void MostrarBanner()
-{
-    Console.WriteLine("***************************************");
-    Console.WriteLine("*  Sistema de Gestión de Inventario   *");
-    Console.WriteLine("***************************************");
-    Console.WriteLine($"Versión: {version}");
-    Console.WriteLine($"Plataforma: {Environment.OSVersion}");
-    Console.WriteLine($".Net Version: {Environment.Version}");
-}
-/*void MostrarAyuda()
-{
-    Console.WriteLine("Comandos disponibles:");
-    Console.WriteLine("1. --help, -h  Muestra esta ayuda");
-    Console.WriteLine("2. --version, -v Muestra la versión");
-    Console.WriteLine();
-    Console.WriteLine("EJEMPLOS:");
-    Console.WriteLine("   dotnet run -- --help");
-    Console.WriteLine("   dotnet run ----version");
-}*/
-
-void MostrarMenu()
-{
-    Console.WriteLine("\nMENU PRINCIPAL");
-    Console.WriteLine("1. listar - Muestra la lista de productos");
-    Console.WriteLine("2. agregar - Agrega un nuevo producto");
-    Console.WriteLine("3. buscar - Busca un producto por nombre");
-    Console.WriteLine("4. salir - Salir del programa");
-}
+var hayStockBajo = repository.HayStockBajo();
+Console.WriteLine($"\n¿Hay productos con stock bajo? {(hayStockBajo ? "Sí" : "No")}");

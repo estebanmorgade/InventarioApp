@@ -2,7 +2,7 @@ using InventarioApp.Models;
 
 namespace InventarioApp.Factories;
 
-public static class ProductFactory
+public static class ProductoFactory
 {
     private static int _nextId = 1;
     public static Producto Crear(

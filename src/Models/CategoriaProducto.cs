@@ -11,5 +11,6 @@ public enum CategoriaProducto
     Salud,
     Belleza,
     Libros,
+    Muebles,
     Otros
 }
