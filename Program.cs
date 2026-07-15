@@ -1,5 +1,6 @@
 ﻿
 using System.Reflection;
+using InventarioApp.Models;
 
 var assembly = Assembly.GetExecutingAssembly();
 var version = assembly.GetName().Version;
@@ -30,7 +31,6 @@ var version = assembly.GetName().Version;
 //variables
 int cantidadProductos = 0;
 decimal valorTotalInventario = 0.00m;
-bool sistemaActivo = true;
 
 MostrarBanner();
 
@@ -39,7 +39,7 @@ bool continuar = true;
 while (continuar)
 {
     MostrarMenu();
-    string comando = LeerEntrada("inventario");
+    string comando = LeerEntrada();
     continuar = ProcesarComando(comando);
 }
 
@@ -83,10 +83,10 @@ void BuscarProducto()
     Console.WriteLine("Buscar producto (Modulo4)");
 }
 
-string LeerEntrada(string prompt)
+string LeerEntrada()
 {
-    string salida = "El prompt ingresado es: " + prompt;
-    return salida;
+    string salida = Console.ReadLine();
+    return salida.Trim();
 }
 // ============ FUNCIONES ============
 
@@ -99,7 +99,7 @@ void MostrarBanner()
     Console.WriteLine($"Plataforma: {Environment.OSVersion}");
     Console.WriteLine($".Net Version: {Environment.Version}");
 }
-void MostrarAyuda()
+/*void MostrarAyuda()
 {
     Console.WriteLine("Comandos disponibles:");
     Console.WriteLine("1. --help, -h  Muestra esta ayuda");
@@ -108,7 +108,7 @@ void MostrarAyuda()
     Console.WriteLine("EJEMPLOS:");
     Console.WriteLine("   dotnet run -- --help");
     Console.WriteLine("   dotnet run ----version");
-}
+}*/
 
 void MostrarMenu()
 {
