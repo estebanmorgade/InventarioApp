@@ -32,12 +32,12 @@ public class JsonInvetarioStorage
         return JsonSerializer.Deserialize<List<Producto>>(json, _options) ?? new List<Producto>();
     }
 
-    public string CrearBackup(string ruta)
+    public string? CrearBackup(string ruta)
     {
         if(!_fileManager.Existe(ruta))
             return null;
 
-        string directorio = Path.GetDirectoryName(ruta);
+        string? directorio = Path.GetDirectoryName(ruta);
         string nombreSinExtension = Path.GetFileNameWithoutExtension(ruta);
         string extension = Path.GetExtension(ruta);
         string timestamp = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss");
