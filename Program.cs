@@ -1,10 +1,13 @@
 ﻿using InventarioApp.Models;
 using InventarioApp.Repositories;
 using InventarioApp.Factories;
+using InventarioApp.Infrastructure;
 
 Console.WriteLine("**** Bienvenido al sistema de inventario ****");
 
 var repository = new InMemoryProductoRepository();
+var almacenamiento = new JsonInvetarioStorage();
+string ruta = "invetario_test.json";
 
 var laptop = ProductoFactory.Crear("Laptop", 1500.00m, 10, CategoriaProducto.Electronica);
 var mouse = ProductoFactory.Crear("Mouse", 25.00m, 50, CategoriaProducto.Electronica);
@@ -22,7 +25,7 @@ Console.WriteLine($"Productos agregados al inventario: {repository.Cantidad}\n")
 
 // Consultas basicas LINQ
 
-var electronicos = repository.BuscarPorCategoria(CategoriaProducto.Electronica);
+/*var electronicos = repository.BuscarPorCategoria(CategoriaProducto.Electronica);
 Console.WriteLine("Productos de electrónica:");
 foreach (var producto in electronicos)
 {
@@ -41,3 +44,18 @@ Console.WriteLine($"\nTodos los nombres de productos en el inventario: {string.J
 
 var hayStockBajo = repository.HayStockBajo();
 Console.WriteLine($"\n¿Hay productos con stock bajo? {(hayStockBajo ? "Sí" : "No")}");
+*/
+
+almacenamiento.CrearBackup(ruta);
+almacenamiento.Guardar(repository.ObtenerTodos(), ruta);
+
+Console.WriteLine("Invetario guardaro correctamente");
+
+var productosCargardos = almacenamiento.Cargar(ruta);
+
+Console.WriteLine("Inventario cargado correctamente");
+
+foreach (var p in productosCargardos)
+{
+    Console.WriteLine($"ID: {p.Id}, Nombre: {p.Nombre}, Precio: {p.Precio}, Cantidad: {p.Cantidad}, Categoria: {p.Categoria}, Estado: {p.Estado}");
+}

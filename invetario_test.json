@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "nombre": "Laptop",
+    "precio": 1500.00,
+    "cantidad": 10,
+    "categoria": "Electronica",
+    "estado": "Activo",
+    "fechaRegistro": "2026-07-31T11:07:47.7697667+10:00",
+    "valorTotal": 15000.00
+  },
+  {
+    "id": 2,
+    "nombre": "Mouse",
+    "precio": 25.00,
+    "cantidad": 50,
+    "categoria": "Electronica",
+    "estado": "Activo",
+    "fechaRegistro": "2026-07-31T11:07:47.7698261+10:00",
+    "valorTotal": 1250.00
+  },
+  {
+    "id": 3,
+    "nombre": "Teclado",
+    "precio": 45.00,
+    "cantidad": 30,
+    "categoria": "Electronica",
+    "estado": "Activo",
+    "fechaRegistro": "2026-07-31T11:07:47.7698269+10:00",
+    "valorTotal": 1350.00
+  },
+  {
+    "id": 4,
+    "nombre": "Silla de oficina",
+    "precio": 120.00,
+    "cantidad": 20,
+    "categoria": "Muebles",
+    "estado": "Activo",
+    "fechaRegistro": "2026-07-31T11:07:47.7698276+10:00",
+    "valorTotal": 2400.00
+  },
+  {
+    "id": 5,
+    "nombre": "Escritorio",
+    "precio": 250.00,
+    "cantidad": 15,
+    "categoria": "Muebles",
+    "estado": "Activo",
+    "fechaRegistro": "2026-07-31T11:07:47.7698283+10:00",
+    "valorTotal": 3750.00
+  }
+]
