@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "nombre": "Notebook HP",
+    "precio": 800,
+    "cantidad": 2,
+    "categoria": "Electronica",
+    "estado": "Activo",
+    "fechaRegistro": "2026-08-02T14:31:10.5535855+10:00",
+    "valorTotal": 1600
+  },
+  {
+    "id": 2,
+    "nombre": "Crema Ester Lode",
+    "precio": 50,
+    "cantidad": 10,
+    "categoria": "Belleza",
+    "estado": "Activo",
+    "fechaRegistro": "2026-08-02T14:34:15.4023867+10:00",
+    "valorTotal": 500
+  }
+]

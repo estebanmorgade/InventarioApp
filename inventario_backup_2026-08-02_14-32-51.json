@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "nombre": "Notebook HP",
+    "precio": 800,
+    "cantidad": 2,
+    "categoria": "Electronica",
+    "estado": "Activo",
+    "fechaRegistro": "2026-08-02T14:31:10.5535855+10:00",
+    "valorTotal": 1600
+  }
+]
